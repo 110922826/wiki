@@ -17,7 +17,7 @@ To extract the acctual sequences and the sequencing scores from the read archive
 
 ## Mapping to a reference genome
 
-Before the mapping procedure we need to find out the read size that we want to map. Here, our reads are all 50bp long, thus the choice for the aligners and options.
+Before the mapping procedure we need to find out the read size that we want to map. Here, our reads are all 50bp long single-end reads, thus the choice for the aligners and options.
 
 ### Using [bwa](http://bio-bwa.sourceforge.net/)
 
@@ -94,7 +94,7 @@ chr1    7100720 7100721 SRR529957.macs2_peak_9    13.81626
 chr1    7147198 7147199 SRR529957.macs2_peak_10   5.99226
 ```
 
-This file we can intersect for example using [bedtools](https://code.google.com/p/bedtools/) with regions of our interest, to  find some ChIP-seq peaks of the DNA-binding protein under investigation.
+This file we can intersect for example using [bedtools](bioinf_bedtools.md) with regions of our interest, to  find some ChIP-seq peaks of the DNA-binding protein under investigation.
 
  
 

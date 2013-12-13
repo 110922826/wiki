@@ -19,6 +19,7 @@
   * # Specific tools/workflows
   * [Bedtools examples](bioinf_bedtools.md)
   * [R/Bioconductor - Analysing Illumina-Microarrays](bioinf_illumina.md)
+  * [Analysing ChIP-seq data](bioinf_chipseq.md)
 
 
 [Info/Biology]()
