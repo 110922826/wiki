@@ -32,6 +32,8 @@ Assuming ```mm10.fa``` contains the complete genome sequence you want to use as 
 > bwa aln /data/EXTERNAL/genomes/bwa-indexes/mm10.fa ../SRR529957.fastq > SRR529957.sai
 > bwa samse /data/EXTERNAL/genomes/bwa-indexes/mm10.fa SRR529957.sai ../SRR529957.fastq > SRR529957.sam
 ```
+Note! For paired-end read data the second command has to follow the general structure: ```> bwa sampe ref.fa aln_sa1.sai aln_sa2.sai read1.fq read2.fq > aln-pe.sam```
+
 
 The .sam format contains the alignments for the reads to the reference.
 
