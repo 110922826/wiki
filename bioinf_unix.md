@@ -15,7 +15,7 @@ Open a terminal window and you are are ready to go.
 > man ls
 > ls -h
 ```
-Another very helpful resource is the [explainshell.com ](explainshell.com ) webpage,  that lets you write down a command-line to see the help text that matches each argument.
+Another very helpful resource is the [explainshell.com ](http://www.explainshell.com ) webpage,  that lets you write down a command-line to see the help text that matches each argument.
 
 
 **Investigate directory / list directory:**
@@ -132,11 +132,18 @@ Note! This is the first time we see the concept of a *pipe* "|". The pipe allows
 > cat file1.txt | wc -l
 ```
 
-**Sort a file:**
+**Sorting files**
 
 ```bash
+# sort on complete line:
 > sort file1.txt
 > cat file1.txt | sort
+
+# Sort a comma-seperated file on third field:
+> cat file1.txt | sort -t ',' -k 3,3
+
+# Sort a tab-eperated file on a field (here second) but keep header line intact:
+> cat file1.txt | awk 'NR==1; NR > 1 {print $0 | "sort -n -k 2,2"}' 
 ```
 
 **Make lines of a file uniq / needs input from "sort":**
@@ -194,23 +201,24 @@ different location:
 **The same with regular expressions:**
 
 ```bash
+# Here "egrep" matches every line that contains the word "REGEXP"
 > cat file1.txt | egrep 'REGEXP'
 # print non-matching lines:
 > cat file1.txt | egrep -v 'REGEXP'
-
 ```
 
+ 
 **In file substitutions using sed**
 
 ```bash
-# substiute all "d" with "e" (g for global)
-> cat file | sed 's/d/e/g' 
+# substiute all tabs with commas (g for global)
+> cat file1.txt | sed 's/\t/,/g' 
 ```
 
 **Perl on command line:**
 
 ```bash
-> cat file | perl -lne ''
+> cat file1.txt | perl -lne 'PERL-COMMAND'
 ```
 
 **Transform windows newline (\r\n) into unix-newline (\n)**
@@ -247,7 +255,7 @@ different location:
 # Now file1.txt still exists
 ```
 
-**We do not need to decompress a file to use its content (most of my files are stored in gzip format):**
+**We do not need to decompress a file to use its content (most of my text files are stored in gzip format):**
 
 ```bash
 > zless file1.txt.gz
@@ -258,7 +266,7 @@ different location:
 **We create an archive and store two directories in it and pass it to gzip for compression**
 
 ```bash
-> tar cvf - /etc /home | gzip > foobar.tar.gz
+> tar cvf - /foo /bar | gzip > foobar.tar.gz
 ```
 
 **Extract  archive again:**
@@ -280,7 +288,7 @@ different location:
 ```bash
 # scp file1.txt username@computername_or_ip:/dir_to_copy
 # e.g.:
-> scp file1.txt.txt seb@SAUSAGE:~/temp
+> scp file1.txt seb@SAUSAGE:~/temp
 
 # copy whole directory to another computer
 > scp -r data/ seb@SAUSAGE:~/temp
@@ -403,4 +411,4 @@ mysql> grant all on *.* to sebastian@localhost identified by 'seb';
 > umount /mnt
 ```
 
-**_File: tutorial_unix.md - Sebastian Schmeier - Last update: 2013/12/12_**
+**_File: tutorial_unix.md - Sebastian Schmeier - Last update: 2014/02/14_**

@@ -15,7 +15,8 @@
 
 **Accuracy** $$ ACC = \frac{TP + TN}{TP + TN + FP + FN} $$
 **Balanced accuracy** $$ bACC = \frac{0.5\*TP}{TP + FN} + \frac{0.5\*TN}{TN + FP} = \frac{SEN + SPC}{2}$$
-**F-measure** $$ F1= \frac{2\*TP}{2\*TP + FP+ FN}$$ 
+**F1-measure** $$ F1= \frac{2\*TP}{2\*TP + FP+ FN}$$
+**Matthews correlation coefficient (MCC)** $$ MCC = \frac{TP \* TN - FP \* FN}{\sqrt{(TP + FP)(TP + FN)(TN + FP)(TN + FN)}} $$
 **Sensitivity / True positive rate** $$ SEN= \frac{TP}{TP + FN} $$
 **False positive rate** $$FPR= \frac{FP}{FP + TN}$$
 **Specificity / True negative rate** $$ SPC= \frac{TN}{TN + FP} = 1 - FPR$$
