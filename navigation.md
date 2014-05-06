@@ -8,6 +8,7 @@
   * [Guide to preparing good research posters](general_poster.md)
   * [Guide for a good oral research presentation](general_presentation.md)
   * [Guide to write research proposals](general_proposal.md)
+  * [Guide to spotting bad science](general_badsci.md)
   * [Markdown-syntax](general_markdown.md)
 
 [Info/Bioinf]()
