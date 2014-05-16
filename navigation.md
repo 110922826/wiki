@@ -1,7 +1,7 @@
 #Info@CompBio
 
 [Home](index.md)
-[Info/General]()
+[General]()
 
   * # General
   * [Guide to choose the right chart for your data](general_chart.md)
@@ -9,24 +9,26 @@
   * [Guide for a good oral research presentation](general_presentation.md)
   * [Guide to write research proposals](general_proposal.md)
   * [Guide to spotting bad science](general_badsci.md)
-  * [Markdown-syntax](general_markdown.md)
+  * [Markdown-syntax for your writing needs](general_markdown.md)
 
-[Info/Bioinf]()
+[Comp/Bioinf]()
 
-  * # General
-  * [Linux/Unix command-line tutorial](bioinf_unix.md)
-  * [Python tutorial](bioinf_python.md)
-  * [R/Bioconductor](bioinf_r.md)
-  * [Commonly used file-formats in bioinformatics](bioinf_files.md)
-  * [Notes on classifiaction tasks](bioinf_classification.md)
+  * # Linux/Computational
+  * [Command-line tutorial](comp_unix.md)
+  * [screen how-to](comp_screen.md)
+  * [git / github how-to](comp_git.md)
+  * [Python tutorial](comp_python.md)
+  * [R/Bioconductor](comp_r.md)
+  * [Notes on machine-learning/classifiaction tasks](comp_classification.md)
   ----
-  * # Specific tools/workflows
+  * # Bioinformatics
+  * [Commonly used file-formats in bioinformatics](bioinf_files.md) 
   * [Bedtools examples](bioinf_bedtools.md)
   * [R/Bioconductor - Analysing Illumina-Microarrays](bioinf_illumina.md)
   * [Analysing ChIP-seq data](bioinf_chipseq.md)
 
 
-[Info/Biology]()
+[Biology]()
 
   * # General
   * []()
