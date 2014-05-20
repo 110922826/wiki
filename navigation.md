@@ -24,8 +24,9 @@
   * # Bioinformatics
   * [Commonly used file-formats in bioinformatics](bioinf_files.md) 
   * [Bedtools examples](bioinf_bedtools.md)
-  * [R/Bioconductor - Analysing Illumina-Microarrays](bioinf_illumina.md)
+  * [R/Bioconductor - Analysing Illumina-microarrays](bioinf_illumina.md)
   * [Analysing ChIP-seq data](bioinf_chipseq.md)
+  * [Short intro to sequence alignment and anlysis for biologists](bioinf_seqintro.md)
 
 
 [Biology]()

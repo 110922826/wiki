@@ -411,4 +411,4 @@ mysql> grant all on *.* to sebastian@localhost identified by 'seb';
 > umount /mnt
 ```
 
-**_File: tutorial_unix.md - Sebastian Schmeier - Last update: 2014/02/14_**
+**_File: comp_unix.md - Sebastian Schmeier - Last update: 2014/02/14_**

@@ -33,4 +33,4 @@ Picture from: [https://en.wikipedia.org/wiki/Receiver_operating_characteristic](
 
 
 
-**_FILE: tutorial_classification.md - Sebastian Schmeier - Last update: 2013/12/13_**
+**_FILE: comp_classification.md - Sebastian Schmeier - Last update: 2013/12/13_**

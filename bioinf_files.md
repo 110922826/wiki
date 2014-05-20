@@ -178,4 +178,4 @@ letter-probability matrix: alength= 4 w= 6 nsites= 20 E= 0.0e+00
 > sam-dump public/sra/SRR770745.sra | samtools view -Sb - | bedtools bamtobed -i stdin | gzip > SRR770745.bed.gz 
 ```
 
-**_FILE: tutorial_files.md - Sebastian Schmeier - Last update: 2013/12/12_**
+**_FILE: bioinf_files.md - Sebastian Schmeier - Last update: 2013/12/12_**
