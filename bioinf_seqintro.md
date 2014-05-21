@@ -48,11 +48,12 @@ Finally we have various filters for filtering out low-complexity sequences. You 
 
 ### 1.4. Interpreting the results
 
-> *__Some tests__*
-> 1. Copy a fairly short chunk of around 20-30 bp and "BLAST" it. What is the result?
-> 2. Copy a bigger chunk, maybe 100-200bp of the gene and "BLAST" it. What is the result?
-> 3. Delete some stretches of the bigger chunk and "BLAST" again. What is the result?
-> 4. Insert some random DNA into the sequence and "BLAST" again. What is the result?
+> *__Example 1__*
+> 1. Use the nucleotide sequence of your gene and play with BLAST.
+> 2. Copy a fairly short chunk of around 20-30 bp and "BLAST" it. What is the result?
+> 3. Copy a bigger chunk, maybe 100-200bp of the gene and "BLAST" it. What is the result?
+> 4. Delete some stretches of the bigger chunk and "BLAST" again. What is the result?
+> 5. Insert some random DNA into the sequence and "BLAST" again. What is the result?
 
 When looking at the results from BLAST, you should know what the various results mean. Although the *e-value* is very important, there are other result options that are also important, such as the *% coverage* of the sequence. Familiarize yourselves with these. You can check the sequences to see what they are, by clicking on them, and the alignments are also presented. Remember that BLAST is a local alignment tool. It will find as many matches between the query and the subject as fulfill the search criteria. This means that it is important to look at all the results, as often there are many highly similar results, so to say that the top one is the closest match isn’t always true, and its also important to distinguish between what is a real match versus what is a spurious match. 
 
@@ -63,7 +64,7 @@ There is a lot of stuff in the NCBI website, so it is worth exploring. Another v
 ### 2.1. Pairwise alignments
 [Align](http://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&BLAST_SPEC=blast2seq&LINK_LOC=align2seq) aligns two sequences. In other words, this is a pairwise alignment tool. This is one good way of aligning two sequences if they have a reasonable match over their entire lengths. It has advantages and disadvantages. It can align in both orientations, but it often struggles if the starts of the sequence are not similar, or if the sequences don’t match over their entire lengths. It will also often produce very many short matches of bits of the two sequences that are similar.
 
-> *__Example__*
+> *__Example 2__*
 >1. Copy the identifier for BRCA2 from human (U43746.1) and mouse (U65594.1).
 >2. Paste them into the [align](http://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&BLAST_SPEC=blast2seq&LINK_LOC=align2seq) program.
 >3. Run it!
@@ -80,13 +81,15 @@ There is a lot of stuff in the NCBI website, so it is worth exploring. Another v
 [CLUSTAL OMEGA](https://www.ebi.ac.uk/Tools/msa/clustalo/) is a newer version of CLUSTALW (and will eventually replace it), which is not yet as commonly used, but seems promising (Paper reference here [[4]]).
 
 
-> *__Example__*
+> *__Example 3__*
 >1. Use this [file](http://compbio.massey.ac.nz/wiki/data/c1/BRCA2_aa.fasta) and paste it into the interface (it contains the BRCA protein sequence from 7 species).
 >2. Run it with default parameters.
 >3. Look at the output.
 >4. Highlight the alignments with colors.
 >5. Send the results to the [EBI Phylogeny](https://www.ebi.ac.uk/Tools/phylogeny/clustalw2_phylogeny/).
 >6. Look at the produced phylogentic tree.
+>7. What does it tell us?
+>8. Do the lengths of the branches have a meaning? 
 
 There are numerous other multiple alignment tools available, and multiple alignments is a field of research in its own right. Many are available as web-tools. Try out some and find one you like. But the most important thing is that multiple alignments must be checked by eye for accuracy. Therefore, you need to import the completed alignment into an alignment editor, and then go through to check that nothing strange has happened. 
 
@@ -97,37 +100,53 @@ There are many different primer design tools out there, and I imagine most do a 
 
 For analysis of sequence data, small scale analyses are often done with software that individual lab groups have. If not, BioEdit is a free program for Windows that is a little painful but works OK. Geneious is a (comparatively) cheap DNA analysis package that is useful for a wide range of DNA analyses, such as alignments, phylogenetic tree-building and cloning design that is powerful, easy to use, and also has the ability to handle next-generation sequencing data (below). However Geneious is not free software and as such costs money.
 
-If you want to move into analysis of genome scale data, then you will probably need to know some command line (below). For assembly of Sanger sequences the [Phred/Phrap/Consed](http://www.phrap.org/phredphrapconsed.html) package is a very powerful free assembly tool. I will deal with next-generation sequence analysis below.
+If you want to move into analysis of genome scale data, then you will probably need to know some *command-line* (below). For assembly of Sanger sequences the [Phred/Phrap/Consed](http://www.phrap.org/phredphrapconsed.html) package is a very powerful free assembly tool. I will deal with next-generation sequence analysis below.
 
-Attention! Often sequence/alignment formats are an issue when working with different programs. Sometimes it is necessary to convert between different sequence/alignment formats, and usually there are sites online that can do this (e.g. [GALAXY](https://usegalaxy.org/) see below). Also be aware that Macs/Unix/Windows use different paragraph/space/newline notations, so sometimes these can be incompatible between each other and need to be converted. Many cases where you get errors for no apparent reason will be different line return formats (in my experience!)
+Attention! Often sequence/alignment formats are an issue when working with different programs. Sometimes it is necessary to convert between different sequence/alignment formats, and usually there are sites online that can do this (e.g. [GALAXY](https://usegalaxy.org/) see below). Also be aware that Macs/*Unix*/Windows use different paragraph/space/newline notations, so sometimes these can be incompatible between each other and need to be converted. Many cases where you get errors for no apparent reason will be different line return formats (in my experience!)
 
-There are also increasing numbers of databases for a huge variety of biological information. One good source for information about these is the journal, [Nucleic Acids Research](http://nar.oxfordjournals.org/). Periodically (once a year) they put out a special issue in which each paper is a description of an online database of some sort. It is a large issue! The DNA and protein databases are obviously the main ones, and you are probably familiar with these. However, there are also specialized database for model organisms (e.g. [Yeast SGD database](http://www.yeastgenome.org/)), types of genes, and genomic comparisons. Then there are more specialized ones, such as [TFSEARCH](http://www.cbrc.jp/research/db/TFSEARCH.html) that searches the [JASPAR database](http://jaspar.genereg.net/) public version of the [TRANSFAC database](http://www.gene-regulation.com/pub/databases.html)  for known binding sites in your DNA (i.e. a database for finding cis-elements). If you want to discover new binding sites [MEME](http://meme.nbcr.net/meme/) might help. Y also might want to find gene ontology terms or pathways that are associated to your gene-set  ([DAVID](http://david.abcc.ncifcrf.gov/)) or your genomic regions ([GREAT](http://bejerano.stanford.edu/great/public/html/)).
+There are also increasing numbers of databases for a huge variety of biological information. One good source for information about these is the journal, [Nucleic Acids Research](http://nar.oxfordjournals.org/). Periodically (once a year) they put out a special issue in which each paper is a description of an online database of some sort. It is a large issue! The DNA and protein databases are obviously the main ones, and you are probably familiar with these. However, there are also specialized database for model organisms (e.g. [Yeast SGD database](http://www.yeastgenome.org/)), types of genes, and genomic comparisons.
 
-Attention! Many of the specialized tools that are available with a web-front-end impose limitations, e.g. regarding sequence length, number of motifs searched, etc. Generally speaking, the downloaded version of these tools are the ones to circumvent such limitations. But then again, we need to use the command-line (see below).
+Then there are more specialized ones, such as [TFSEARCH](http://www.cbrc.jp/research/db/TFSEARCH.html) that searches the [JASPAR database](http://jaspar.genereg.net/) public version of the [TRANSFAC database](http://www.gene-regulation.com/pub/databases.html)  for known binding sites in your DNA (i.e. a database for finding cis-elements). If you want to discover new binding sites [MEME](http://meme.nbcr.net/meme/) might help.
 
-> *__Example__*
+You also might want to find gene ontology terms or pathways that are associated to your gene-set  ([DAVID](http://david.abcc.ncifcrf.gov/)) or your genomic regions ([GREAT](http://bejerano.stanford.edu/great/public/html/)).
+
+You might want to identify protein-domains in our DNA or protein sequences. Common databases and tools for such a task are [CD-SEARCH](http://www.ncbi.nlm.nih.gov/Structure/bwrpsb/bwrpsb.cgi?), [PROSITE](http://prosite.expasy.org/) or the [PFAM](http://pfam.xfam.org/) and [Superfamily](http://supfam.org/SUPERFAMILY/hmm.html) database.
+
+Attention! Many of the specialized tools that are available with a web-front-end impose limitations, e.g. regarding sequence length, number of motifs searched, etc. Generally speaking, the downloaded version of these tools are the ones to circumvent such limitations. But then again, we need to use the *command-line* (see below).
+
+> *__Example 4__*
 > 1. Copy the proteins from this [file](http://compbio.massey.ac.nz/wiki/data/c1/gene_set.txt).
 > 2. Paste the list to [DAVID](http://david.abcc.ncifcrf.gov/).
 > 3. Look at the functional annotation of the genes/proteins.
 > 4. What are those genes?
-> 5. Convert the list using DAVID to OFFICIAL_GENE_SYMBOLS.
-> 6. Take the first gene and search it in the [UCSC Genome Browser](http://genome.ucsc.edu/).
+> 5. Look for Pathway enrichment ([KEGG](http://www.genome.jp/kegg/)) of the gene set and select one pathway.
+> 6. Explore the [KEGG](http://www.genome.jp/kegg/) database.
+> 7. Convert the list using [DAVID](http://david.abcc.ncifcrf.gov/) to OFFICIAL_GENE_SYMBOLS.
+> 8. Take the same gene and paste it into the [STRING](http://string-db.org/) search field.
+> 9. Look at the association network. What is the difference to [KEGG](http://www.genome.jp/kegg/)?
+> 10. Take the first gene and search it in the [UCSC Genome Browser](http://genome.ucsc.edu/).
+
+> *__Example 5__*
+> 1. From the [file](http://compbio.massey.ac.nz/wiki/data/c1/BRCA2_aa.fasta), take the human one and the chicken protein one and search for protein-domains with [PFAM](http://pfam.xfam.org/).
+> 2. What do you expect to find?
+> 3. What do you find??
+
 
 ## 4. Genome browsers
 Now we are in the age of sequencing, people often want to look at and represent larger chunks of DNA, and also to integrate multiple pieces of information into one view of your DNA of interest. If this is something you are starting to do, then it might be worthwhile looking at using a genome browser. Genome browsers are software tools that allow you to view, in a scalable way, large pieces of DNA and to simultaneously view many different features that are present in that sequence.
 
 Usually you start by either putting your DNA sequence of interest into the program , and then load various features onto this. For example, you might want to load on where all the genes are, and then overlay this with where histone variants map (from ChIP mapping) and which genes from a related species are present. But you can basically put anything on it (e.g. I put primers in). In order to load features, you have to have a special type of file, called a [GFF3 file](http://compbio.massey.ac.nz/wiki/#!bioinf_files.md). This is actually not so special: it is just a tab-delimited text file (you can make these with Excel) that contains the various information you want to load on (gene name, position, orientation, etc). There are a number of freely-available genome browsers you can use, such as the Broad’s [IGV](https://www.broadinstitute.org/igv/home).
 
-The [UCSC Genome Browser](http://genome.ucsc.edu/) is also of this type, but here lots of data is already integrated and you can upload specail annotation for the sequences in form of  [bed-files](http://compbio.massey.ac.nz/wiki/#!bioinf_files.md). 
+The [UCSC Genome Browser](http://genome.ucsc.edu/) is also of this type, but here lots of data is already integrated and you can upload specail annotation for the sequences in form of  [bed-files](http://compbio.massey.ac.nz/wiki/#!bioinf_files.md). This browser is actually a piece of software that one can use to create one's own genome browser. Other projects use it as well, e.g. the [UCSC Microbial Genome browser](http://microbes.ucsc.edu/), etc.
 
 ## 5. Next-generation sequence analysis
-The costs of sequencing are dropping at a phenomenal rate, due to the development of so-called next-generation sequencing technologies. Many of these technologies produce a very large number of sequences of short length that need to be assembled to get the original DNA sequence, or mapped back to the genome (e.g. in the case of mRNA sequencing). The sheer numbers of sequences generated by these technologies means that in many cases traditional tools for sequence analysis don’t work. More-and-more biologists have to learn to deal with high volumes of sequences, and often this requires using the command line and programming. If you are interested in continuing with biological research, then gaining experience in dealing with this sort of data will become an advantage for you. The biggest problem currently in biology is the lack of people who can analyse large data sets, and can do so in a quantitative manner. In most cases this requires the use of *command-line* driven software. Luckily, the majority are pretty simple to use once you understand the basics. The great thing about *command-line* software is that almost all of it is free! It takes a bit more time to get comfortable using it, and the support depends on the software, but at least you don’t have to harass your supervisor for money!
+The costs of sequencing are dropping at a phenomenal rate, due to the development of so-called next-generation sequencing technologies. Many of these technologies produce a very large number of sequences of short length that need to be assembled to get the original DNA sequence, or mapped back to the genome (e.g. in the case of mRNA sequencing). The sheer numbers of sequences generated by these technologies means that in many cases traditional tools for sequence analysis don’t work. More-and-more biologists have to learn to deal with high volumes of sequences, and often this requires using the *command-line* and programming. If you are interested in continuing with biological research, then gaining experience in dealing with this sort of data will become an advantage for you. The biggest problem currently in biology is the lack of people who can analyse large data sets, and can do so in a quantitative manner. In most cases this requires the use of *command-line* driven software. Luckily, the majority are pretty simple to use once you understand the basics. The great thing about *command-line* software is that almost all of it is free! It takes a bit more time to get comfortable using it, and the support depends on the software, but at least you don’t have to harass your supervisor for money!
 
 This is an area that is developing incredibly rapidly, with a bewildering range of tools that all seem to do the same or similar things. Probably the best thing to do is to talk to someone who has done these kinds of analyses before to help you get started. There are many papers being published on a monthly basis providing new and varied ways to a whole variety of analyses, but you don’t want to spend your whole time testing out new versions unless you have to. If in doubt, let published studies doing the similar things to you guide you (if possible).
 
-There is also intensive development of downstream analyses of data generated by these technologies. For transcriptome data, you may want to know what set of genes has changed significantly between two different samples (e.g. a mutant and wild-type), and what classes these genes fall into. Alternatively, you may want a list of where all the polymorphisms from a genome sequence fall; what genes they fall into, etc. These kinds of analyses are now often done using command-line driven software. An important feature to note is that next generation sequence datasets are often publically available (usually a criterion for publishing), therefore you can analyse these datasets yourself, which means that you don’t even have to do the experiments and then pay for the sequencing yourself. This is important to keep in mind, as often the people who originally produced the dataset did so for a completely different reason, but the information that is important for you is in there, and just needs to be analysed to get it out.
+There is also intensive development of downstream analyses of data generated by these technologies. For transcriptome data, you may want to know what set of genes has changed significantly between two different samples (e.g. a mutant and wild-type), and what classes these genes fall into. Alternatively, you may want a list of where all the polymorphisms from a genome sequence fall; what genes they fall into, etc. These kinds of analyses are now often done using *command-line* driven software. An important feature to note is that next generation sequence datasets are often publically available (usually a criterion for publishing), therefore you can analyse these datasets yourself, which means that you don’t even have to do the experiments and then pay for the sequencing yourself. This is important to keep in mind, as often the people who originally produced the dataset did so for a completely different reason, but the information that is important for you is in there, and just needs to be analysed to get it out.
 
-Another key aspect in the analysis of biological data is statistical analysis. For basic statistics, there are commercial packages available that will do statistics on data you enter in. However, you should be familiar with the statistical analyses that are being performed: how they work and what they mean. As more-and-more data are produced, there is a need to do more sophisticated analyses, and to be able to plot these data. For this, more powerful statistical packages may be required. Many of these also require use of the command line. A particularly good (and free!) one is called R. Once again it takes a bit to learn, but will definitely be beneficial in the long-term!
+Another key aspect in the analysis of biological data is statistical analysis. For basic statistics, there are commercial packages available that will do statistics on data you enter. However, you should be familiar with the statistical analyses that are being performed: how they work and what they mean. As more-and-more data are produced, there is a need to do more sophisticated analyses, and to be able to plot these data. For this, more powerful statistical packages may be required. Many of these also require use of the *command-line*. A particularly good (and free!) one is called [R](http://www.r-project.org/). Once again it takes a bit to learn, but will definitely be beneficial in the long-term!
 
 Finally, the best way to learn computational biology is to talk to people who have experience in the area and who can point you in the right direction. Very often, the hardest part is knowing where to start. Therefore ask around: there are a number of people in the Institute who have experience with bioinformatics and computational biology who will be able to help.
 
@@ -141,7 +160,11 @@ There is lots of data already out there, and depending of what kind of data you 
 - [dbSNP](http://www.ncbi.nlm.nih.gov/snp/)
 
 ## 7. A word on the command-line
-Many of the analysis tools that are available on the web, plus a whole lot that are not, are also available as downloadable programs to run locally on your computer. One of the most common is the set of BLAST scripts – you can download them all. Many of these require (e.g. the BLAST series) require command line usage, although increasing numbers are doing it through graphical user interfaces.  The advantage with running these programs off your own computer is they are often faster, and you can often put in bigger/more sequences that on the web (they often limit this so people don’t take over the whole server with a huge job). I highly recommend trying out command line – you can do a lot with just a little knowledge, and it opens up a whole lot of stuff you couldn’t otherwise use (in particular free stuff!). This often requires use of a Unix/Linux computers (luckily, Macs are basically Unix, but Windows is not). There are good little tutorials on the web for this stuff (a short one can be found [here](http://compbio.massey.ac.nz/wiki/#!comp_unix.md)), but it is also a good idea to ask someone who already knows some to teach: a quick run through the key points will be enough to get you started. 
+Many of the analysis tools that are available on the web, plus a whole lot that are not, are also available as downloadable programs to run locally on your computer. One of the most common is the set of BLAST scripts – you can download them all. Many of these require (e.g. the BLAST series) require *command-line* usage, although increasing numbers are doing it through graphical user interfaces.  The advantage with running these programs off your own computer is they are often faster, and you can often put in bigger/more sequences that on the web (they often limit this so people don’t take over the whole server with a huge job). I highly recommend trying out *command-line* – you can do a lot with just a little knowledge, and it opens up a whole lot of stuff you couldn’t otherwise use (in particular free stuff!).
+
+This often requires use of a *Unix*/*Linux* computers (luckily, Macs are basically *Unix*, but Windows is not). An easy way to try out a *Linux* working environment is through an *Linux* [LiveCD](https://help.ubuntu.com/community/LiveCD#How-To_LiveCD_Ubuntu). After you download the *Linux* system and burn it onto a DVD, you insert it into your computer drive and restart the computer. It will boot your computer into a *Linux* system that is running from the CD, without any installation. The next time you restart your computer without the CD inserted, your old system starts as normal without any change.
+
+There are good little tutorials on the web for the *command-line* stuff (a short one can be found [here](http://compbio.massey.ac.nz/wiki/#!comp_unix.md)), but it is also a good idea to ask someone who already knows some to teach: a quick run through the key points will be enough to get you started. 
 
 ## 8. Beyond
 
@@ -166,8 +189,15 @@ Hint! The good news for people wary of *command-line* is a lot of these tools ar
 - MEME - [http://meme.nbcr.net/meme/](http://meme.nbcr.net/meme/)
 - DAVID - [http://david.abcc.ncifcrf.gov/](http://david.abcc.ncifcrf.gov/)
 - GREAT - [http://bejerano.stanford.edu/great/public/html/](http://bejerano.stanford.edu/great/public/html/)
+- STRING - [http://string-db.org/](http://string-db.org/)
+- KEGG - [http://www.genome.jp/kegg/](http://www.genome.jp/kegg/)
+- CD-SEARCH - [http://www.ncbi.nlm.nih.gov/Structure/bwrpsb/bwrpsb.cgi?](http://www.ncbi.nlm.nih.gov/Structure/bwrpsb/bwrpsb.cg i?) 
+- PROSITE -  [http://prosite.expasy.org/](http://prosite.expasy.org/) 
+- PFAM - [http://pfam.xfam.org/](http://pfam.xfam.org/)
+- Superfamily - [http://supfam.org/SUPERFAMILY/hmm.html](http://supfam.org/SUPERFAMILY/hmm.html)
 - UCSC Genome Browser - [http://genome.ucsc.edu/](http://genome.ucsc.edu/)
 - IGV - [https://www.broadinstitute.org/igv/home](https://www.broadinstitute.org/igv/home)
+- UCSC Microbial Genome Browser - [http://microbes.ucsc.edu/](http://microbes.ucsc.edu/)
 - UCSC Table Browser - [http://genome.ucsc.edu/cgi-bin/hgTables?command=start](http://genome.ucsc.edu/cgi-bin/hgTables?command=start)
 - BioMart - [http://www.biomart.org/biomart/martview/](http://www.biomart.org/biomart/martview/)
 - Gene Expression Omnibus - [http://www.ncbi.nlm.nih.gov/geo/](http://www.ncbi.nlm.nih.gov/geo/)
@@ -180,6 +210,13 @@ Hint! The good news for people wary of *command-line* is a lot of these tools ar
 - Bioconductor - [http://www.bioconductor.org/](http://www.bioconductor.org/)
 - GALAXY - [https://usegalaxy.org/](https://usegalaxy.org/)
 - GenePattern - [https://www.broadinstitute.org/cancer/software/genepattern/](https://www.broadinstitute.org/cancer/software/genepattern/)
+- Ubuntu LiveCD - [https://help.ubuntu.com/community/LiveCD#How-To_LiveCD_Ubuntu](https://help.ubuntu.com/community/LiveCD#How-To_LiveCD_Ubuntu)
+
+<!--
+Metabarcoding 
+[QIIME](http://qiime.org/)
+[SILVA](http://www.arb-silva.de/)
+-->
 
 [1]:  http://www.cshlpress.com/default.tpl?cart=14004538673655488&fromlink=T&linkaction=full&linksortby=oop_title&--eqSKUdatarq=466 "Mount DM. Bioinformatics: Sequence and Genome Analysis(2nd ed.]. Cold Spring Harbor Laboratory Press (2004): Cold Spring Harbor, NY. ISBN 0-87969-608-7."
 [2]: http://www.ncbi.nlm.nih.gov/pubmed/?term=9254694 "Altschul SF et al. Gaped BLAST and PSI-BLAST: a new generation of protein database search programs, Nucleic Acids Res (1997). 25:3389-3402."
@@ -192,4 +229,4 @@ Hint! The good news for people wary of *command-line* is a lot of these tools ar
 3. [Larkin MA et al. Clustal W and Clustal X version 2.0. Bioinformatics (2007), 23, 2947-2948.] [3]
 4. [Sievers F et al. Fast, scalable generation of high‐quality protein multiple sequence alignments using Clustal Omega.Mol Syst Biol. (2011) 7: 539. DOI: 10.1038/msb.2011.75] [4]
 
-**_FILE: bioinf_seqintro.md - Download as [PDF](http://compbio.massey.ac.nz/wiki/data/c1/doc/bioinf_seqintro.pdf) - Sebastian Schmeier - Last update: 2014/05/20_**
+**_FILE: bioinf_seqintro.md - Download as [PDF](http://compbio.massey.ac.nz/wiki/data/c1/doc/bioinf_seqintro.pdf) - Sebastian Schmeier - Last update: 2014/05/2014_**
