@@ -26,8 +26,9 @@
   * [Bedtools examples](bioinf_bedtools.md)
   * [R/Bioconductor - Analysing Illumina-microarrays](bioinf_illumina.md)
   * [Analysing ChIP-seq data](bioinf_chipseq.md)
-  * [Short intro to sequence alignment and anlysis for biologists](bioinf_seqintro.md)
-
+----
+  * # Short courses
+  * [Sequence alignment and anlysis for biologists](bioinf_seqintro.md)
 
 [Biology]()
 

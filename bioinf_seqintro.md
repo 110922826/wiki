@@ -1,7 +1,11 @@
 # Short Intro to Sequence Alignment and Analysis for Biologists
-In *bioinformatics*, a sequence alignment is a way of arranging the sequences of DNA, RNA, or protein to identify regions of similarity that may be a consequence of functional, structural, or evolutionary relationships between the sequences [[1]]. 
+## 0. Preface
 
-Sequence alignment falls into three classes: pairwise, multiple, and database searches:
+This introduction is exactly what the title says *"short"*. It does not try to be an exhaustive course or collection of tools and exercises. It is meant to give a brief overview of what is out there. Many good tools have been omitted. The fault is mine alone. This *"resource"* if you want to call it that, is evolving, so expect changes at any time.
+
+__In *bioinformatics*__, a sequence alignment is a way of arranging the sequences of DNA, RNA, or protein to identify regions of similarity that may be a consequence of functional, structural, or evolutionary relationships between the sequences [[1]]. 
+
+Sequence alignments can be generally divided into three classes: pairwise, multiple, and database searches:
 
 * Pairwise is easy to do (computationally). Often used to align large sequences (comparative genomics). 
 * Multiple is more complex, but is more widely used (e.g. phylogenetics, comparative genomics).
