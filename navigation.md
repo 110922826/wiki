@@ -27,8 +27,11 @@
   * [R/Bioconductor - Analysing Illumina-microarrays](bioinf_illumina.md)
   * [Analysing ChIP-seq data](bioinf_chipseq.md)
 ----
-  * # Short courses
-  * [Sequence alignment and anlysis for biologists](bioinf_seqintro.md)
+  * # Short courses/intros
+  * [Sequence alignment and anlysis for biologists](c1_seqintro.md)
+----
+  * # Online material
+  * [Collection of online bioinformatics related learning material](material_bioinf.md)
 
 [Biology]()
 

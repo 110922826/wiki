@@ -45,13 +45,13 @@
 
 \begin{document}
 
-\title{Short Intro to Sequence Alignment and Analysis for Biologists}
+\title{Short Intro: Sequence Alignment and Analysis for Biologists}
 \author{Sebastian Schmeier}
-\date{20th May 2014}
+\date{23 May 2014}
 \maketitle
 
-\section{Short Intro to Sequence Alignment and Analysis for
-Biologists}\label{short-intro-to-sequence-alignment-and-analysis-for-biologists}
+\section{Short Intro: Sequence Alignment and Analysis for
+Biologists}\label{short-intro-sequence-alignment-and-analysis-for-biologists}
 
 \subsection{0. Preface}\label{preface}
 
@@ -59,7 +59,7 @@ This introduction is exactly what the title says \emph{``short''}. It
 does not try to be an exhaustive course or collection of tools and
 exercises. It is meant to give a brief overview of what is out there.
 Many good tools have been omitted. The fault is mine alone. This
-\emph{``resource''} if you want to call it that, is evolving, so expect
+\emph{``resource''}, if you want to call it that, is evolving, so expect
 changes at any time.
 
 \textbf{In \emph{bioinformatics}}, a sequence alignment is a way of
@@ -100,6 +100,37 @@ Matches are returned with \emph{e-values} that reflect the likelihood
 that the match is real (as opposed to a chance match). It works in
 association with GenBank -- the NCBI database for DNA sequences.
 
+\textbf{BLAST}'s main puposes, as mentioned on the
+\href{https://en.wikipedia.org/wiki/BLAST}{wikipedia page}, include:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \emph{\textbf{Identifying species}} - With the use of BLAST, you can
+  possibly correctly identify a species or find homologous species. This
+  can be useful, for example, when you are working with a DNA sequence
+  from an unknown species.
+\item
+  \emph{\textbf{Locating domains}} - When working with a protein
+  sequence you can input it into BLAST, to locate known domains within
+  the sequence of interest.
+\item
+  \emph{\textbf{Establishing phylogeny}} - Using the results received
+  through BLAST you can create a phylogenetic tree using the BLAST
+  web-page. Phylogenies based on BLAST alone are less reliable than
+  other purpose-built computational phylogenetic methods, so should only
+  be relied upon for ``first pass'' phylogenetic analyses.
+\item
+  \emph{\textbf{DNA mapping}} - When working with a known species, and
+  looking to sequence a gene at an unknown location, BLAST can compare
+  the chromosomal position of the sequence of interest, to relevant
+  sequences in the database(s).
+\item
+  \emph{\textbf{Comparison}} - When working with genes, BLAST can locate
+  common genes in two related species, and can be used to map
+  annotations from one organism to another.
+\end{itemize}
+
 Attention! It is very important if you are using BLAST in your research,
 that you know how it works, what its limitations are, and that you use
 the correct BLAST options and interpret the meaning of the results
@@ -109,7 +140,8 @@ results correctly.
 
 \subsubsection{1.1. Get a sequence}\label{get-a-sequence}
 
-Go to \url{http://www.ncbi.nlm.nih.gov/} and search for a gene ( e.g.
+For training purposes we will work with an already know sequence. Go to
+\url{http://www.ncbi.nlm.nih.gov/} and search for a gene ( e.g.
 \href{http://www.ncbi.nlm.nih.gov/gquery/?term=BRCA2}{BRCA2}). Now we
 see plenty of different databases where our search term was found. All
 of these provide different information about our search term.
@@ -174,22 +206,11 @@ Here we talk about the most important ones:
   \textbf{Short queries} - Automatically adjust word size and other
   parameters to improve results for short queries.
 \item
-  \textbf{Expect threshold} - Expected number of chance matches in a
-  random model. The default value (10) means that 10 such matches are
-  expected to be found merely by chance.
-\end{itemize}
-
-Note! The Expect value (\emph{e-value}) is critical -- simply put, it is
-the number of such matches we expect by random chance. However, you
-should look into exactly what the \emph{e-value} is. The lower the
-e-value, the greater the chance the match is real. More information is
-available
-\href{http://www.ncbi.nlm.nih.gov/BLAST/blastcgihelp.shtml\#expect}{here}
-and a video tutorial is available
-\href{https://www.youtube.com/watch?v=nO0wJgZRZJs}{here}.
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
+  \textbf{Expect threshold} - The \emph{e-value} is the number of BLAST
+  hits you expect to see by chanec (with the observed score or higher).
+  The default value (10) means that 10 such matches are expected to be
+  found merely by chance. The threshold lets you adjust which matches
+  you want to see.
 \item
   \textbf{The word size} - The length (number of nucleotides) of the
   seed that initiates an alignment (More information
@@ -209,6 +230,17 @@ Finally we have various filters for filtering out low-complexity
 sequences. You can just filter these out from just the initial alignment
 seeding, but include them the full alignment search, as well as
 customize what regions get masked.
+
+Note! The Expect value (\emph{e-value}) is critical -- simply put, it is
+the number of matches we expect by random chance. However, you should
+look into exactly what the \emph{e-value} is. The lower the e-value, the
+greater the chance the match is not due to chance. The NCBI internal
+processes use a threshold of 1e-6, however, your threshold depends on
+other parameter, e.g.~length of query sequence, size of database, etc.
+More information is available
+{[}\href{http://www.ncbi.nlm.nih.gov/BLAST/blastcgihelp.shtml\#expect}{here}{]}
+and a video tutorial is available
+{[}\href{https://www.youtube.com/watch?v=nO0wJgZRZJs}{here}{]}.
 
 \subsubsection{1.4. Interpreting the
 results}\label{interpreting-the-results}
@@ -266,22 +298,16 @@ bits of the two sequences that are similar.
 program. 3. Run it!
 \end{quote}
 
-\href{http://pipmaker.bx.psu.edu/cgi-bin/pipmaker?advanced}{Pipmaker}
-can be used to very quickly find matches between two sequences is. Here
-you can align sequences of very different lengths, and it also aligns in
-both orientations, and is very fast. It produces a dot-plot type output
-of the level of similarity. The disadvantage is that it doesn't give you
-the actual sequence alignment, but it shows you what parts you can
-align. You can also see repetitive elements in the dotplots.
-
 \href{http://mobyle.pasteur.fr/cgi-bin/MobylePortal/portal.py?form=stretcher}{Stretcher}
 is a useful tool for aligning long sequences that are quite similar. Its
 usually OK if the sequences are not the same lengths, but not always.
 You also have to make sure the sequences are in the same orientation. It
 produces a nice aligned sequence output. It is part of the Mobyle
-website that uses the EMBOSS suite of programs (run by the Pasteur).
-This has quite a number of other, useful programs on there, such as
-SQUIZZ for sequence/alignment conversions (see below).
+website that uses the \href{http://emboss.sourceforge.net/}{EMBOSS}
+suite of programs (run by the Pasteur). This has quite a number of
+other, useful programs on there, such as
+\href{http://mobyle.pasteur.fr/cgi-bin/portal.py\#forms::squizz_convert}{SQUIZZ}
+for sequence/alignment conversions.
 
 \href{http://genome.lbl.gov/vista/index.shtml}{Vista} is another
 alignment tool that produces a visual display of the level of similarity
@@ -310,7 +336,7 @@ yet as commonly used, but seems promising (Paper reference here
 \begin{quote}
 \emph{\textbf{Example 3}} 1. Use this
 \href{http://compbio.massey.ac.nz/wiki/data/c1/BRCA2_aa.fasta}{file} and
-paste it into the interface (it contains the BRCA protein sequence from
+paste it into the interface (it contains the BRCA@ protein sequence from
 7 species). 2. Run it with default parameters. 3. Look at the output. 4.
 Highlight the alignments with colors. 5. Send the results to the
 \href{https://www.ebi.ac.uk/Tools/phylogeny/clustalw2_phylogeny/}{EBI
@@ -620,85 +646,87 @@ results are as expected.
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
+  Bioconductor - \url{http://www.bioconductor.org/}
+\item
+  BioMart - \url{http://www.biomart.org/biomart/martview/}
+\item
+  BioPython - \url{http://www.biopython.org/}
+\item
   BLAST - \url{http://blast.ncbi.nlm.nih.gov/}
 \item
-  NCBI - \url{http://www.ncbi.nlm.nih.gov/}
-\item
-  NCBI Nucleotide - \url{http://www.ncbi.nlm.nih.gov/nuccore}
-\item
-  Stretcher -
-  \url{http://mobyle.pasteur.fr/cgi-bin/MobylePortal/portal.py?form=stretcher}
-\item
-  Vista - \url{http://genome.lbl.gov/vista/index.shtml}
+  CD-SEARCH -
+  \href{http://www.ncbi.nlm.nih.gov/Structure/bwrpsb/bwrpsb.cg\%20i?}{http://www.ncbi.nlm.nih.gov/Structure/bwrpsb/bwrpsb.cgi?}
 \item
   CLUSTALW2 - \url{https://www.ebi.ac.uk/Tools/msa/clustalw2/}
 \item
   CLUSTAL OMEGA - \url{https://www.ebi.ac.uk/Tools/msa/clustalo/}
 \item
-  Primer-BLAST - \url{http://www.ncbi.nlm.nih.gov/tools/primer-blast/}
+  DAVID - \url{http://david.abcc.ncifcrf.gov/}
+\item
+  dbSNP - \url{http://www.ncbi.nlm.nih.gov/snp/}
+\item
+  EMBOSS - \url{http://emboss.sourceforge.net/}
+\item
+  GALAXY - \url{https://usegalaxy.org/}
+\item
+  Gene Expression Omnibus - \url{http://www.ncbi.nlm.nih.gov/geo/}
+\item
+  GenePattern -
+  \url{https://www.broadinstitute.org/cancer/software/genepattern/}
+\item
+  GREAT - \url{http://bejerano.stanford.edu/great/public/html/}
+\item
+  IGV - \url{https://www.broadinstitute.org/igv/home}
+\item
+  JASPAR database - \url{http://jaspar.genereg.net/}
+\item
+  KEGG - \url{http://www.genome.jp/kegg/}
+\item
+  MEME - \url{http://meme.nbcr.net/meme/}
+\item
+  NCBI - \url{http://www.ncbi.nlm.nih.gov/}
+\item
+  NCBI Nucleotide - \url{http://www.ncbi.nlm.nih.gov/nuccore}
+\item
+  Perl - \url{http://www.perl.org/}
+\item
+  PFAM - \url{http://pfam.xfam.org/}
 \item
   Phred/Phrap/Consed - \url{http://www.phrap.org/phredphrapconsed.html}
 \item
-  TFSEARCH - \url{http://www.cbrc.jp/research/db/TFSEARCH.html}
+  Primer-BLAST - \url{http://www.ncbi.nlm.nih.gov/tools/primer-blast/}
 \item
-  JASPAR database - \url{http://jaspar.genereg.net/}
+  PROSITE - \url{http://prosite.expasy.org/}
+\item
+  Python - \url{https://www.python.org/}
+\item
+  R - \url{http://www.r-project.org/}
+\item
+  Short read archive - \url{http://www.ncbi.nlm.nih.gov/sra}
+\item
+  Superfamily - \url{http://supfam.org/SUPERFAMILY/hmm.html}
+\item
+  Stretcher -
+  \url{http://mobyle.pasteur.fr/cgi-bin/MobylePortal/portal.py?form=stretcher}
+\item
+  STRING - \url{http://string-db.org/}
+\item
+  TFSEARCH - \url{http://www.cbrc.jp/research/db/TFSEARCH.html}
 \item
   TRANSFAC database -
   \url{http://www.gene-regulation.com/pub/databases.html}
 \item
-  MEME - \url{http://meme.nbcr.net/meme/}
-\item
-  DAVID - \url{http://david.abcc.ncifcrf.gov/}
-\item
-  GREAT - \url{http://bejerano.stanford.edu/great/public/html/}
-\item
-  STRING - \url{http://string-db.org/}
-\item
-  KEGG - \url{http://www.genome.jp/kegg/}
-\item
-  CD-SEARCH -
-  \href{http://www.ncbi.nlm.nih.gov/Structure/bwrpsb/bwrpsb.cg\%20i?}{http://www.ncbi.nlm.nih.gov/Structure/bwrpsb/bwrpsb.cgi?}
-\item
-  PROSITE - \url{http://prosite.expasy.org/}
-\item
-  PFAM - \url{http://pfam.xfam.org/}
-\item
-  Superfamily - \url{http://supfam.org/SUPERFAMILY/hmm.html}
+  Ubuntu LiveCD -
+  \url{https://help.ubuntu.com/community/LiveCD\#How-To_LiveCD_Ubuntu}
 \item
   UCSC Genome Browser - \url{http://genome.ucsc.edu/}
-\item
-  IGV - \url{https://www.broadinstitute.org/igv/home}
 \item
   UCSC Microbial Genome Browser - \url{http://microbes.ucsc.edu/}
 \item
   UCSC Table Browser -
   \url{http://genome.ucsc.edu/cgi-bin/hgTables?command=start}
 \item
-  BioMart - \url{http://www.biomart.org/biomart/martview/}
-\item
-  Gene Expression Omnibus - \url{http://www.ncbi.nlm.nih.gov/geo/}
-\item
-  Short read archive - \url{http://www.ncbi.nlm.nih.gov/sra}
-\item
-  dbSNP - \url{http://www.ncbi.nlm.nih.gov/snp/}
-\item
-  Python - \url{https://www.python.org/}
-\item
-  BioPython - \url{http://www.biopython.org/}
-\item
-  Perl - \url{http://www.perl.org/}
-\item
-  R - \url{http://www.r-project.org/}
-\item
-  Bioconductor - \url{http://www.bioconductor.org/}
-\item
-  GALAXY - \url{https://usegalaxy.org/}
-\item
-  GenePattern -
-  \url{https://www.broadinstitute.org/cancer/software/genepattern/}
-\item
-  Ubuntu LiveCD -
-  \url{https://help.ubuntu.com/community/LiveCD\#How-To_LiveCD_Ubuntu}
+  Vista - \url{http://genome.lbl.gov/vista/index.shtml}
 \end{itemize}
 
 \subsection{10. References}\label{references}
@@ -727,7 +755,7 @@ results are as expected.
 \end{enumerate}
 
 \textbf{\emph{FILE: bioinf}seqintro.md - Download as
-\href{http://compbio.massey.ac.nz/wiki/data/c1/doc/bioinf_seqintro.pdf}{PDF}
-- Sebastian Schmeier - Last update: 2014/05/2014\_}
+\href{http://compbio.massey.ac.nz/wiki/data/c1/doc/c1_seqintro.pdf}{PDF}
+- Sebastian Schmeier - Last update: 2014/05/22\_}
 
 \end{document}

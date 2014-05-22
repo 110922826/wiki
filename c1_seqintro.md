@@ -1,7 +1,7 @@
-# Short Intro to Sequence Alignment and Analysis for Biologists
+# Short Intro:  Sequence Alignment and Analysis for Biologists
 ## 0. Preface
 
-This introduction is exactly what the title says *"short"*. It does not try to be an exhaustive course or collection of tools and exercises. It is meant to give a brief overview of what is out there. Many good tools have been omitted. The fault is mine alone. This *"resource"* if you want to call it that, is evolving, so expect changes at any time.
+This introduction is exactly what the title says *"short"*. It does not try to be an exhaustive course or collection of tools and exercises. It is meant to give a brief overview of what is out there. Many good tools have been omitted. The fault is mine alone. This *"resource"*, if you want to call it that, is evolving, so expect changes at any time.
 
 __In *bioinformatics*__, a sequence alignment is a way of arranging the sequences of DNA, RNA, or protein to identify regions of similarity that may be a consequence of functional, structural, or evolutionary relationships between the sequences [[1]]. 
 
@@ -16,10 +16,18 @@ We will use the [BLAST](http://blast.ncbi.nlm.nih.gov/) tool to find a sequence 
 
 **BLAST** stands for **B**asic **L**ocal **A**lignment **S**equence **T**ool [[2]]. It is available online through NCBI (National Center for Biotechnology Information). The basic idea behind BLAST is that it searches your input sequence against a *database of DNA sequences* to find matches. Matches are returned with *e-values* that reflect the likelihood that the match is real (as opposed to a chance match). It works in association with GenBank – the NCBI database for DNA sequences. 
 
+**BLAST**'s main puposes, as mentioned on the [wikipedia page](https://en.wikipedia.org/wiki/BLAST), include:
+
+- *__Identifying species__* - With the use of BLAST, you can possibly correctly identify a species or find homologous species. This can be useful, for example, when you are working with a DNA sequence from an unknown species.
+- *__Locating domains__* - When working with a protein sequence you can input it into BLAST, to locate known domains within the sequence of interest.
+- *__Establishing phylogeny__* - Using the results received through BLAST you can create a phylogenetic tree using the BLAST web-page. Phylogenies based on BLAST alone are less reliable than other purpose-built computational phylogenetic methods, so should only be relied upon for "first pass" phylogenetic analyses.
+- *__DNA mapping__* - When working with a known species, and looking to sequence a gene at an unknown location, BLAST can compare the chromosomal position of the sequence of interest, to relevant sequences in the database(s).
+- *__Comparison__* - When working with genes, BLAST can locate common genes in two related species, and can be used to map annotations from one organism to another. 
+
 Attention! It is very important if you are using BLAST in your research, that you know how it works, what its limitations are, and that you use the correct BLAST options and interpret the meaning of the results correctly. If usage of BLAST is presented in your thesis, this knowledge will be expected, and you will also be expected to interpret your results correctly.
 
 ### 1.1. Get a sequence
-Go to [http://www.ncbi.nlm.nih.gov/](http://www.ncbi.nlm.nih.gov/) and search for a gene ( e.g. [BRCA2](http://www.ncbi.nlm.nih.gov/gquery/?term=BRCA2)). Now we see plenty of different databases where our search term was found. All of these provide different information about our search term.
+For training purposes we will work with an already know sequence. Go to [http://www.ncbi.nlm.nih.gov/](http://www.ncbi.nlm.nih.gov/) and search for a gene ( e.g. [BRCA2](http://www.ncbi.nlm.nih.gov/gquery/?term=BRCA2)). Now we see plenty of different databases where our search term was found. All of these provide different information about our search term.
 
 We want the sequence of the gene. Thus, we need to go to the [nucleotide](http://www.ncbi.nlm.nih.gov/nuccore) database (e.g. [BRCA2](http://www.ncbi.nlm.nih.gov/nuccore/?term=BRCA2)). Choose for example the human sequence of your gene in FASTA format (more information on data-formats can be found [here](http://compbio.massey.ac.nz/wiki/#!bioinf_files.md)). Copy a part of the sequence (e.g. [BRCA2](http://www.ncbi.nlm.nih.gov/nuccore/1161383?report=fasta)).
 
@@ -40,15 +48,14 @@ The parameters section of th [BLAST](http://blast.ncbi.nlm.nih.gov/)  tool is ve
 
 * **Max target sequences** - Maximum number of aligned sequences to display (the actual number of alignments may be greater than this). 
 * **Short queries** - Automatically adjust word size and other parameters to improve results for short queries.
-* **Expect threshold** - Expected number of chance matches in a random model. The default value (10) means that 10 such matches are expected to be found merely by chance.
-
-Note! The Expect value (*e-value*) is critical – simply put, it is the number of such matches we expect by random chance. However, you should look into exactly what the *e-value* is. The lower the e-value, the greater the chance the match is real. More information is available [here](http://www.ncbi.nlm.nih.gov/BLAST/blastcgihelp.shtml#expect) and a video tutorial is available [here](https://www.youtube.com/watch?v=nO0wJgZRZJs). 
-
+* **Expect threshold** - The *e-value* is the number of BLAST hits you expect to see by chanec (with the observed score or higher). The default value (10) means that 10 such matches are expected to be found merely by chance. The threshold lets you adjust which matches you want to see. 
 * **The word size** - The length (number of nucleotides) of the seed that initiates an alignment (More information [here](http://www.ncbi.nlm.nih.gov/BLAST/blastcgihelp.shtml#wordsize)).
 * **Match/Mismatch Scores** - Reward and penalty for matching and mismatching bases, which determine whether to align residues or not – this is the basic engine of the search (More information [here](http://www.ncbi.nlm.nih.gov/BLAST/blastcgihelp.shtml#Reward-penalty)).
 * **Gap Costs** - Cost to create and extend a gap in an alignment (More information [here](http://www.ncbi.nlm.nih.gov/BLAST/blastcgihelp.shtml#Reward-penalty)).
 
 Finally we have various filters for filtering out low-complexity sequences. You can just filter these out from just the initial alignment seeding, but include them the full alignment search, as well as customize what regions get masked.
+
+Note! The Expect value (*e-value*) is critical – simply put, it is the number of matches we expect by random chance. However, you should look into exactly what the *e-value* is. The lower the e-value, the greater the chance the match is not due to chance. The NCBI internal processes use a threshold of 1e-6, however, your threshold depends on other parameter, e.g. length of query sequence, size of database, etc. More information is available [[here](http://www.ncbi.nlm.nih.gov/BLAST/blastcgihelp.shtml#expect)] and a video tutorial is available [[here](https://www.youtube.com/watch?v=nO0wJgZRZJs)]. 
 
 ### 1.4. Interpreting the results
 
@@ -73,9 +80,7 @@ There is a lot of stuff in the NCBI website, so it is worth exploring. Another v
 >2. Paste them into the [align](http://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&BLAST_SPEC=blast2seq&LINK_LOC=align2seq) program.
 >3. Run it!
 
-[Pipmaker](http://pipmaker.bx.psu.edu/cgi-bin/pipmaker?advanced) can be used to very quickly find matches between two sequences is. Here you can align sequences of very different lengths, and it also aligns in both orientations, and is very fast. It produces a dot-plot type output of the level of similarity. The disadvantage is that it doesn’t give you the actual sequence alignment, but it shows you what parts you can align. You can also see repetitive elements in the dotplots.
-
-[Stretcher](http://mobyle.pasteur.fr/cgi-bin/MobylePortal/portal.py?form=stretcher) is a useful tool for aligning long sequences that are quite similar. Its usually OK if the sequences are not the same lengths, but not always. You also have to make sure the sequences are in the same orientation. It produces a nice aligned sequence output. It is part of the Mobyle website that uses the EMBOSS suite of programs (run by the Pasteur). This has quite a number of other, useful programs on there, such as SQUIZZ for sequence/alignment conversions (see below).
+[Stretcher](http://mobyle.pasteur.fr/cgi-bin/MobylePortal/portal.py?form=stretcher) is a useful tool for aligning long sequences that are quite similar. Its usually OK if the sequences are not the same lengths, but not always. You also have to make sure the sequences are in the same orientation. It produces a nice aligned sequence output. It is part of the Mobyle website that uses the [EMBOSS](http://emboss.sourceforge.net/) suite of programs (run by the Pasteur). This has quite a number of other, useful programs on there, such as [SQUIZZ](http://mobyle.pasteur.fr/cgi-bin/portal.py#forms::squizz_convert) for sequence/alignment conversions.
 
 [Vista](http://genome.lbl.gov/vista/index.shtml) is another alignment tool that produces a visual display of the level of similarity across the alignment, allowing you to see conserved and diverged regions easily. The aligner is surprisingly accurate and fast, and you can include multiple sequences, although they all get pairwise aligned, not multiply aligned as we will cover next .
 
@@ -86,7 +91,7 @@ There is a lot of stuff in the NCBI website, so it is worth exploring. Another v
 
 
 > *__Example 3__*
->1. Use this [file](http://compbio.massey.ac.nz/wiki/data/c1/BRCA2_aa.fasta) and paste it into the interface (it contains the BRCA protein sequence from 7 species).
+>1. Use this [file](http://compbio.massey.ac.nz/wiki/data/c1/BRCA2_aa.fasta) and paste it into the interface (it contains the BRCA@ protein sequence from 7 species).
 >2. Run it with default parameters.
 >3. Look at the output.
 >4. Highlight the alignments with colors.
@@ -178,43 +183,44 @@ Hint! The good news for people wary of *command-line* is a lot of these tools ar
 
 
 ## 9. Links
+- Bioconductor - [http://www.bioconductor.org/](http://www.bioconductor.org/)
+- BioMart - [http://www.biomart.org/biomart/martview/](http://www.biomart.org/biomart/martview/)
+- BioPython - [http://www.biopython.org/](http://www.biopython.org/)
 - BLAST - [http://blast.ncbi.nlm.nih.gov/](http://blast.ncbi.nlm.nih.gov/)
+- CD-SEARCH - [http://www.ncbi.nlm.nih.gov/Structure/bwrpsb/bwrpsb.cgi?](http://www.ncbi.nlm.nih.gov/Structure/bwrpsb/bwrpsb.cg i?) 
+- CLUSTALW2 - [https://www.ebi.ac.uk/Tools/msa/clustalw2/](https://www.ebi.ac.uk/Tools/msa/clustalw2/) 
+- CLUSTAL OMEGA - [https://www.ebi.ac.uk/Tools/msa/clustalo/](https://www.ebi.ac.uk/Tools/msa/clustalo/) 
+- DAVID - [http://david.abcc.ncifcrf.gov/](http://david.abcc.ncifcrf.gov/)
+- dbSNP - [http://www.ncbi.nlm.nih.gov/snp/](http://www.ncbi.nlm.nih.gov/snp/)
+- EMBOSS - [http://emboss.sourceforge.net/](http://emboss.sourceforge.net/)
+- GALAXY - [https://usegalaxy.org/](https://usegalaxy.org/) 
+- Gene Expression Omnibus - [http://www.ncbi.nlm.nih.gov/geo/](http://www.ncbi.nlm.nih.gov/geo/)
+- GenePattern - [https://www.broadinstitute.org/cancer/software/genepattern/](https://www.broadinstitute.org/cancer/software/genepattern/)
+- GREAT - [http://bejerano.stanford.edu/great/public/html/](http://bejerano.stanford.edu/great/public/html/)
+- IGV - [https://www.broadinstitute.org/igv/home](https://www.broadinstitute.org/igv/home)
+- JASPAR database - [http://jaspar.genereg.net/](http://jaspar.genereg.net/)
+- KEGG - [http://www.genome.jp/kegg/](http://www.genome.jp/kegg/)
+- MEME - [http://meme.nbcr.net/meme/](http://meme.nbcr.net/meme/)
 - NCBI - [http://www.ncbi.nlm.nih.gov/](http://www.ncbi.nlm.nih.gov/)
 - NCBI Nucleotide - [http://www.ncbi.nlm.nih.gov/nuccore](http://www.ncbi.nlm.nih.gov/nuccore)
-- Stretcher - [http://mobyle.pasteur.fr/cgi-bin/MobylePortal/portal.py?form=stretcher](http://mobyle.pasteur.fr/cgi-bin/MobylePortal/portal.py?form=stretcher)
-- Vista - [http://genome.lbl.gov/vista/index.shtml](http://genome.lbl.gov/vista/index.shtml)
-- CLUSTALW2 - [https://www.ebi.ac.uk/Tools/msa/clustalw2/](https://www.ebi.ac.uk/Tools/msa/clustalw2/)
-- CLUSTAL OMEGA - [https://www.ebi.ac.uk/Tools/msa/clustalo/](https://www.ebi.ac.uk/Tools/msa/clustalo/) 
-- Primer-BLAST - [http://www.ncbi.nlm.nih.gov/tools/primer-blast/](http://www.ncbi.nlm.nih.gov/tools/primer-blast/)
-- Phred/Phrap/Consed - [http://www.phrap.org/phredphrapconsed.html](http://www.phrap.org/phredphrapconsed.html)
-- TFSEARCH - [http://www.cbrc.jp/research/db/TFSEARCH.html](http://www.cbrc.jp/research/db/TFSEARCH.html)
-- JASPAR database - [http://jaspar.genereg.net/](http://jaspar.genereg.net/)
-- TRANSFAC database - [http://www.gene-regulation.com/pub/databases.html](http://www.gene-regulation.com/pub/databases.html)
-- MEME - [http://meme.nbcr.net/meme/](http://meme.nbcr.net/meme/)
-- DAVID - [http://david.abcc.ncifcrf.gov/](http://david.abcc.ncifcrf.gov/)
-- GREAT - [http://bejerano.stanford.edu/great/public/html/](http://bejerano.stanford.edu/great/public/html/)
-- STRING - [http://string-db.org/](http://string-db.org/)
-- KEGG - [http://www.genome.jp/kegg/](http://www.genome.jp/kegg/)
-- CD-SEARCH - [http://www.ncbi.nlm.nih.gov/Structure/bwrpsb/bwrpsb.cgi?](http://www.ncbi.nlm.nih.gov/Structure/bwrpsb/bwrpsb.cg i?) 
-- PROSITE -  [http://prosite.expasy.org/](http://prosite.expasy.org/) 
+- Perl - [http://www.perl.org/](http://www.perl.org/) 
 - PFAM - [http://pfam.xfam.org/](http://pfam.xfam.org/)
+- Phred/Phrap/Consed - [http://www.phrap.org/phredphrapconsed.html](http://www.phrap.org/phredphrapconsed.html)
+- Primer-BLAST - [http://www.ncbi.nlm.nih.gov/tools/primer-blast/](http://www.ncbi.nlm.nih.gov/tools/primer-blast/) 
+- PROSITE -  [http://prosite.expasy.org/](http://prosite.expasy.org/) 
+- Python - [https://www.python.org/](https://www.python.org/)
+- R - [http://www.r-project.org/](http://www.r-project.org/)
+- Short read archive - [http://www.ncbi.nlm.nih.gov/sra](http://www.ncbi.nlm.nih.gov/sra)
 - Superfamily - [http://supfam.org/SUPERFAMILY/hmm.html](http://supfam.org/SUPERFAMILY/hmm.html)
+- Stretcher - [http://mobyle.pasteur.fr/cgi-bin/MobylePortal/portal.py?form=stretcher](http://mobyle.pasteur.fr/cgi-bin/MobylePortal/portal.py?form=stretcher)
+- STRING - [http://string-db.org/](http://string-db.org/)
+- TFSEARCH - [http://www.cbrc.jp/research/db/TFSEARCH.html](http://www.cbrc.jp/research/db/TFSEARCH.html)
+- TRANSFAC database - [http://www.gene-regulation.com/pub/databases.html](http://www.gene-regulation.com/pub/databases.html)
+- Ubuntu LiveCD - [https://help.ubuntu.com/community/LiveCD#How-To_LiveCD_Ubuntu](https://help.ubuntu.com/community/LiveCD#How-To_LiveCD_Ubuntu)
 - UCSC Genome Browser - [http://genome.ucsc.edu/](http://genome.ucsc.edu/)
-- IGV - [https://www.broadinstitute.org/igv/home](https://www.broadinstitute.org/igv/home)
 - UCSC Microbial Genome Browser - [http://microbes.ucsc.edu/](http://microbes.ucsc.edu/)
 - UCSC Table Browser - [http://genome.ucsc.edu/cgi-bin/hgTables?command=start](http://genome.ucsc.edu/cgi-bin/hgTables?command=start)
-- BioMart - [http://www.biomart.org/biomart/martview/](http://www.biomart.org/biomart/martview/)
-- Gene Expression Omnibus - [http://www.ncbi.nlm.nih.gov/geo/](http://www.ncbi.nlm.nih.gov/geo/)
-- Short read archive - [http://www.ncbi.nlm.nih.gov/sra](http://www.ncbi.nlm.nih.gov/sra)
-- dbSNP - [http://www.ncbi.nlm.nih.gov/snp/](http://www.ncbi.nlm.nih.gov/snp/)
-- Python - [https://www.python.org/](https://www.python.org/)
-- BioPython - [http://www.biopython.org/](http://www.biopython.org/)
-- Perl - [http://www.perl.org/](http://www.perl.org/)
-- R - [http://www.r-project.org/](http://www.r-project.org/)
-- Bioconductor - [http://www.bioconductor.org/](http://www.bioconductor.org/)
-- GALAXY - [https://usegalaxy.org/](https://usegalaxy.org/)
-- GenePattern - [https://www.broadinstitute.org/cancer/software/genepattern/](https://www.broadinstitute.org/cancer/software/genepattern/)
-- Ubuntu LiveCD - [https://help.ubuntu.com/community/LiveCD#How-To_LiveCD_Ubuntu](https://help.ubuntu.com/community/LiveCD#How-To_LiveCD_Ubuntu)
+- Vista - [http://genome.lbl.gov/vista/index.shtml](http://genome.lbl.gov/vista/index.shtml)
 
 <!--
 Metabarcoding 
@@ -233,4 +239,4 @@ Metabarcoding
 3. [Larkin MA et al. Clustal W and Clustal X version 2.0. Bioinformatics (2007), 23, 2947-2948.] [3]
 4. [Sievers F et al. Fast, scalable generation of high‐quality protein multiple sequence alignments using Clustal Omega.Mol Syst Biol. (2011) 7: 539. DOI: 10.1038/msb.2011.75] [4]
 
-**_FILE: bioinf_seqintro.md - Download as [PDF](http://compbio.massey.ac.nz/wiki/data/c1/doc/bioinf_seqintro.pdf) - Sebastian Schmeier - Last update: 2014/05/2014_**
+**_FILE: bioinf_seqintro.md - Download as [PDF](http://compbio.massey.ac.nz/wiki/data/c1/doc/c1_seqintro.pdf) - Sebastian Schmeier - Last update: 2014/05/22_**
