@@ -31,7 +31,7 @@
   * [Sequence alignment and anlysis for biologists](c1_seqintro.md)
 ----
   * # Online material
-  * [Collection of online bioinformatics related learning material](material_bioinf.md)
+  * [Collection of online learning material](material_bioinf.md)
 
 [Biology]()
 

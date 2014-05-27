@@ -1,4 +1,11 @@
 # Linux/Unix command-line tutorial
+## Preface
+This tutorial is based on a Linux/Unix *command-line*. Using the *command-line* requires a Linux/Unix operating system. The easiest way to try out a Linux system without actually installing it on your computer is a [LiveCD](https://en.wikipedia.org/wiki/Live_CD). A LiveCD is a DVD that you prepare (e.g. burn a Linux distribution on it) and insert in your computer. You would restart you computer and can run Linux from the DVD without any installation requirements. This is helpful for trying out a distibution of Linux not for actual work.
+
+Another route would be to use a virtual machine. Software to create a virtual machine is free, e.g. [VirtualBox](https://www.virtualbox.org/). 
+
+Common flavors of Linux ready for download are e.g. [Ubuntu](https://help.ubuntu.com/community/LiveCD) or if you are thinking of going the bioinformatics route, [BioLinux](http://nebc.nerc.ac.uk/tools/bio-linux/bio-linux-7-info), which includes many pre-installed bioinformatics tools.
+
 ##Introduction##
 This is a collection of commands and programs I put together for working under Linux/Unix shells. It is not comprehensive. It includes very basic stuff. Tutorial style. This is bash syntax but most of it  will work on other shells (tcsh, sh) as well.
 
@@ -15,7 +22,7 @@ Open a terminal window and you are are ready to go.
 > man ls
 > ls -h
 ```
-Another very helpful resource is the [explainshell.com ](http://www.explainshell.com ) webpage,  that lets you write down a command-line to see the help text that matches each argument.
+Another very helpful resource is the [explainshell.com ](http://www.explainshell.com ) webpage,  that lets you write down a *command-line* to see the help text that matches each argument.
 
 
 **Investigate directory / list directory:**

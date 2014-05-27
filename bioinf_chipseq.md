@@ -28,11 +28,25 @@ Assuming ```mm10.fa``` contains the complete genome sequence you want to use as 
 ```
 
 #### Mapping to the reference index
+Two-command process. First you produce a gapped/ungapped alignment and then you generate the final alignment either single or paired ended.
+
 ```bash
 > bwa aln /data/EXTERNAL/genomes/bwa-indexes/mm10.fa ../SRR529957.fastq > SRR529957.sai
+```
+
+Note: You might want to use the option ```-q```  , which will quality trim the reads before aligning them, e.g. ```-q 20```  (where 20 is the phred-score -> 20 = 99% base call accuracy.)
+
+Generate the final alignment, with single ended reads:
+
+``` bash
 > bwa samse /data/EXTERNAL/genomes/bwa-indexes/mm10.fa SRR529957.sai ../SRR529957.fastq > SRR529957.sam
 ```
-Note! For paired-end read data the second command has to follow the general structure: ```> bwa sampe ref.fa aln_sa1.sai aln_sa2.sai read1.fq read2.fq > aln-pe.sam```
+
+or paried-end reads:
+
+```bash
+> bwa sampe ref.fa aln_sa1.sai aln_sa2.sai read1.fq read2.fq > aln-pe.sam
+```
 
 
 The .sam format contains the alignments for the reads to the reference.
@@ -101,4 +115,4 @@ This file we can intersect for example using [bedtools](bioinf_bedtools.md) with
  
 
 
-**_FILE: bioinf_chipseq.md - Sebastian Schmeier - Last update: 2013/12/13_**
+**_FILE: bioinf_chipseq.md - Sebastian Schmeier - Last update: 2014/05/27_**

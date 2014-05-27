@@ -41,11 +41,14 @@ Several different flavours of [BLAST](http://blast.ncbi.nlm.nih.gov/) are availa
 * [tblastx](http://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=tblastx&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome) - Search translated nucleotide database using a translated nucleotide query
 * [Align](http://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&BLAST_SPEC=blast2seq&LINK_LOC=align2seq) - Align two (or more) sequences using BLAST (bl2seq)
 
+Hint! There is [program selection table](http://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=ProgSelectionGuide#pstab) that can guide you to the right tool to use.
+
 ### 1.3. Choosing the right options/parameters
 Some of these tools mentioned above have options/parameters for the type of [BLAST](http://blast.ncbi.nlm.nih.gov/) you can perform. It is important to know what they are and what situations to use the different options. Plus there are various other tools – have a look around. There are tutorials on the website.
 
 The parameters section of th [BLAST](http://blast.ncbi.nlm.nih.gov/)  tool is very important. Here we talk about the most important ones:
 
+* **Database** - The database to search your sequence against. Here is an overview of the content of each [database](http://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=ProgSelectionGuide#db).
 * **Max target sequences** - Maximum number of aligned sequences to display (the actual number of alignments may be greater than this). 
 * **Short queries** - Automatically adjust word size and other parameters to improve results for short queries.
 * **Expect threshold** - The *e-value* is the number of BLAST hits you expect to see by chanec (with the observed score or higher). The default value (10) means that 10 such matches are expected to be found merely by chance. The threshold lets you adjust which matches you want to see. 
@@ -60,11 +63,13 @@ Note! The Expect value (*e-value*) is critical – simply put, it is the number 
 ### 1.4. Interpreting the results
 
 > *__Example 1__*
-> 1. Use the nucleotide sequence of your gene and play with BLAST.
-> 2. Copy a fairly short chunk of around 20-30 bp and "BLAST" it. What is the result?
-> 3. Copy a bigger chunk, maybe 100-200bp of the gene and "BLAST" it. What is the result?
-> 4. Delete some stretches of the bigger chunk and "BLAST" again. What is the result?
-> 5. Insert some random DNA into the sequence and "BLAST" again. What is the result?
+>1. Use the nucleotide sequence of your gene and play with BLAST.
+>2. Copy a fairly short chunk of around 20-30 bp and "BLAST" it. What is the result?
+>3. Copy a bigger chunk, maybe 100-200bp of the gene and "BLAST" it. What is the result?
+>4. Delete some stretches of the bigger chunk and "BLAST" again. What is the result?
+>5. Insert some random DNA into the sequence and "BLAST" again. What is the result?
+>6. Can you deduce what role the length of the input sequence has on the BLAST outcome?
+>7. What problems could you run into if your query sequence is very short? Why?
 
 When looking at the results from BLAST, you should know what the various results mean. Although the *e-value* is very important, there are other result options that are also important, such as the *% coverage* of the sequence. Familiarize yourselves with these. You can check the sequences to see what they are, by clicking on them, and the alignments are also presented. Remember that BLAST is a local alignment tool. It will find as many matches between the query and the subject as fulfill the search criteria. This means that it is important to look at all the results, as often there are many highly similar results, so to say that the top one is the closest match isn’t always true, and its also important to distinguish between what is a real match versus what is a spurious match. 
 
@@ -77,8 +82,8 @@ There is a lot of stuff in the NCBI website, so it is worth exploring. Another v
 
 > *__Example 2__*
 >1. Copy the identifier for BRCA2 from human (U43746.1) and mouse (U65594.1).
->2. Paste them into the [align](http://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&BLAST_SPEC=blast2seq&LINK_LOC=align2seq) program.
->3. Run it!
+>2. Paste them into the [align](http://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&BLAST_SPEC=blast2seq&LINK_LOC=align2seq) program. Run it!
+>3. Explain what you see in the alignment. What are the vertical bars for (maybe if you turn on the colors it may help)? Are there differences over the whole alignment?
 
 [Stretcher](http://mobyle.pasteur.fr/cgi-bin/MobylePortal/portal.py?form=stretcher) is a useful tool for aligning long sequences that are quite similar. Its usually OK if the sequences are not the same lengths, but not always. You also have to make sure the sequences are in the same orientation. It produces a nice aligned sequence output. It is part of the Mobyle website that uses the [EMBOSS](http://emboss.sourceforge.net/) suite of programs (run by the Pasteur). This has quite a number of other, useful programs on there, such as [SQUIZZ](http://mobyle.pasteur.fr/cgi-bin/portal.py#forms::squizz_convert) for sequence/alignment conversions.
 
@@ -91,7 +96,7 @@ There is a lot of stuff in the NCBI website, so it is worth exploring. Another v
 
 
 > *__Example 3__*
->1. Use this [file](http://compbio.massey.ac.nz/wiki/data/c1/BRCA2_aa.fasta) and paste it into the interface (it contains the BRCA@ protein sequence from 7 species).
+>1. Use this [file](http://compbio.massey.ac.nz/wiki/data/c1/BRCA2_aa.fasta) and paste it into the interface (it contains the BRCA2 protein sequence from 7 species).
 >2. Run it with default parameters.
 >3. Look at the output.
 >4. Highlight the alignments with colors.
@@ -134,11 +139,12 @@ Attention! Many of the specialized tools that are available with a web-front-end
 > 8. Take the same gene and paste it into the [STRING](http://string-db.org/) search field.
 > 9. Look at the association network. What is the difference to [KEGG](http://www.genome.jp/kegg/)?
 > 10. Take the first gene and search it in the [UCSC Genome Browser](http://genome.ucsc.edu/).
+> 11. Explore the kind of information that the  [UCSC Genome Browser](http://genome.ucsc.edu/) can give you. What kind of information is available? Give some examples of the information with explanation.
 
 > *__Example 5__*
 > 1. From the [file](http://compbio.massey.ac.nz/wiki/data/c1/BRCA2_aa.fasta), take the human one and the chicken protein one and search for protein-domains with [PFAM](http://pfam.xfam.org/).
 > 2. What do you expect to find?
-> 3. What do you find??
+> 3. What do you find?
 
 
 ## 4. Genome browsers
@@ -235,8 +241,8 @@ Metabarcoding
 
 ## 10. References
 1. [Mount DM. Bioinformatics: Sequence and Genome Analysis (2nd ed.). Cold Spring Harbor Laboratory Press (2004): Cold Spring Harbor, NY. ISBN 0-87969-608-7.] [1]
-2. [Altschul SF et al. Gaped BLAST and PSI-BLAST: a new generation of protein database search programs, Nucleic Acids Res (1997). 25:3389-3402.] [2]
+2. [Altschul SF et al. Gapped BLAST and PSI-BLAST: a new generation of protein database search programs, Nucleic Acids Res (1997). 25:3389-3402.] [2]
 3. [Larkin MA et al. Clustal W and Clustal X version 2.0. Bioinformatics (2007), 23, 2947-2948.] [3]
 4. [Sievers F et al. Fast, scalable generation of high‐quality protein multiple sequence alignments using Clustal Omega.Mol Syst Biol. (2011) 7: 539. DOI: 10.1038/msb.2011.75] [4]
 
-**_FILE: bioinf_seqintro.md - Download as [PDF](http://compbio.massey.ac.nz/wiki/data/c1/doc/c1_seqintro.pdf) - Sebastian Schmeier - Last update: 2014/05/22_**
+**FILE: c1_seqintro.md - Download as [PDF](http://compbio.massey.ac.nz/wiki/data/c1/doc/c1_seqintro.pdf) - Sebastian Schmeier - Last update: 2014/05/22**
